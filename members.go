@@ -30,6 +30,23 @@ func (c *Client) Members(groupID int) (*models.Members, error) {
 	return &members, nil
 }
 
+func (c *Client) MembersByPage(groupID int, pageIndex int) (*models.Members, error) {
+	var members models.Members
+
+	v := c.urlValues()
+	v.Add("group_id", strconv.Itoa(groupID))
+	v.Add("offset", strconv.Itoa(pageIndex))
+
+	// append 's' for /members
+	uri := memberEndpoint + "s" + queryStart + v.Encode()
+
+	if err := c.call(http.MethodGet, uri, nil, &members); err != nil {
+		return nil, err
+	}
+
+	return &members, nil
+}
+
 // Member returns the meetup profile data for a single member
 func (c *Client) Member(memberID int) (*models.Member, error) {
 	var member models.Member
