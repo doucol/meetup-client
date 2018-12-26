@@ -15,6 +15,7 @@ const baseURL = "https://api.meetup.com"
 // Clienter
 type Clienter interface {
 	Members(int) (*models.Members, error)
+	MembersByPage(int, int) (*models.Members, error)
 	Member(int) (*models.Member, error)
 	GroupByID([]int) (*models.Groups, error)
 	GroupByURLName([]string) (*models.Groups, error)
