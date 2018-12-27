@@ -6,6 +6,10 @@ type Member struct {
 	Status string  `json:"status"`
 	ID     int     `json:"id"`
 	Topics []Topic `json:"topics"`
+	City 	string `json:"city"`
+	State 	string `json:"state"`
+	Country string `json:"country"`
+	Hometown string `json:"hometown"`
 }
 
 // Members wraps a slice of Member and also contains meta-fields from the meetup API response
